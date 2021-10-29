@@ -10,12 +10,12 @@ spec:
     name: nginx-service80
     protocol: TCP
     targetPort: 80
-    nodePort: 30002
+    nodePort: 80
   - port: 81
     name: nginx-service81
     protocol: TCP
     targetPort: 81
-    nodePort: 30003
+    nodePort: 81
   selector:
     app: nginx
   type: NodePort

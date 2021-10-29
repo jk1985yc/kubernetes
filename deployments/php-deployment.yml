@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-server
+  labels:
+    app: php-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php-server
+  template:
+    metadata:
+      labels:
+        app: php-server
+    spec:
+      containers:
+      - name: php-server
+        #image: php:0.1
+        image: php56:0.0.1
+        volumeMounts:
+        - mountPath: /www
+          name: www
+        #ports:
+        #- containerPort: 9000
+      volumes:
+      - name: www
+        hostPath:
+          path: /kubernetes/www

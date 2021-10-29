@@ -20,14 +20,22 @@ spec:
         volumeMounts:
         - name: nginx-conf
           mountPath: /etc/nginx/nginx.conf
+        - name: fastcgi-conf
+          mountPath: /etc/nginx/fastcgi.conf
         - name: conf
           mountPath: /etc/nginx/conf.d
         - name: www
           mountPath: /www
+        #- name: nfs
+        #  mountPath: /tmp/kubernetes
       volumes:
       - name: nginx-conf
         hostPath:
           path: /kubernetes/nginx/nginx.conf
+          type: File
+      - name: fastcgi-conf
+        hostPath:
+          path: /kubernetes/nginx/fastcgi.conf
           type: File
       - name: conf
         hostPath:
@@ -37,6 +45,9 @@ spec:
         hostPath:
           path: /kubernetes/www
           type: Directory
+      #- name: nfs
+      #  persistentVolumeClaim:
+      #    claimName: nginx
       #标签选择器
       nodeSelector:
         type: nginx
